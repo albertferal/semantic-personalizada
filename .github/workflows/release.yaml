@@ -92,9 +92,15 @@ jobs:
 
       - name: Build and push Docker image
         if: ${{ env.VERSION != '' }}
-        run: make publish
-        env:
-          VERSION: ${{ env.VERSION }}
+        run: |
+          if [ -f "Makefile" ]; then
+            cat Makefile
+          else
+            echo "Makefile not found. Exiting..."
+            exit 1
+          fi
+  env:
+    VERSION: ${{ env.VERSION }}
 
       - name: Package helm chart with new version
         if: ${{ env.VERSION != '' }}
