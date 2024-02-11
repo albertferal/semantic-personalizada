@@ -99,8 +99,8 @@ jobs:
             echo "Makefile not found. Exiting..."
             exit 1
           fi
-  env:
-    VERSION: ${{ env.VERSION }}
+        env:
+          VERSION: ${{ env.VERSION }}
 
       - name: Package helm chart with new version
         if: ${{ env.VERSION != '' }}
